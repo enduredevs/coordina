@@ -1,0 +1,9 @@
+{
+	"name": "@coordina/tsconfig",
+	"version": "0.0.0",
+	"private": true,
+	"devDependencies": {
+		"@tsconfig/next": "^2.0.4",
+		"@tsconfig/strictest": "^2.0.8"
+	}
+}

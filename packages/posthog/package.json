@@ -1,0 +1,26 @@
+{
+  "name": "@coordina/posthog",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./server": "./src/server.ts",
+    "./client": "./src/client.tsx",
+    "./utils": "./src/utils.ts"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "packageManager": "pnpm@10.17.0",
+  "dependencies": {
+    "js-cookie": "^3.0.5",
+    "posthog-js": "^1.297.0",
+    "posthog-node": "^5.13.0",
+    "react": "19.2.0"
+  },
+  "devDependencies": {
+    "@coordina/tsconfig": "workspace:*",
+    "@types/js-cookie": "^3.0.6",
+    "@types/node": "^20.19.25",
+    "@types/react": "^19.2.6"
+  }
+}
