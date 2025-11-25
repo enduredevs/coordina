@@ -40,3 +40,9 @@ playwright-report
 test-results
 .kiro
 .vercel
+
+/generated/prisma
+
+/generated/prisma
+
+/generated/prisma

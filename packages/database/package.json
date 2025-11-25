@@ -1,0 +1,26 @@
+{
+  "name": "@coordina/database",
+  "version": "0.0.0",
+  "private": true,
+  "exports": "./index.ts",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate",
+    "db:deploy": "prisma migrate deploy --config ../../prisma.config.ts",
+    "db:migrate": "prisma migrate dev --config ../../prisma.config.ts",
+    "db:m": "dotenv -e ../../.env -- prisma migrate dev",
+    "db:seed": "tsx prisma/seed.ts",
+    "type-check": "tsc --pretty --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.0.0",
+    "dayjs": "^1.11.19"
+  },
+  "devDependencies": {
+    "@coordina/tsconfig": "workspace:*",
+    "@faker-js/faker": "^10.1.0",
+    "@types/node": "^24.10.1",
+    "prisma": "^7.0.0",
+    "tsx": "^4.20.6"
+  }
+}

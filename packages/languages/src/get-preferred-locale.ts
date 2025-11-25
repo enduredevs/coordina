@@ -3,13 +3,13 @@ import Negotiator from "negotiator";
 import { defaultLocale, supportedLanguages } from ".";
 
 export function getPreferredLocaleFromHeaders({
-  acceptedLanguageHeader,
+  acceptLanguageHeader,
 }: {
-  acceptedLanguageHeader: string;
+  acceptLanguageHeader: string;
 }) {
   const preferredLanguages = new Negotiator({
     headers: {
-      "accept-language": acceptedLanguageHeader,
+      "accept-language": acceptLanguageHeader,
     },
   })
     .languages()
