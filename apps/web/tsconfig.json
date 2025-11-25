@@ -1,0 +1,21 @@
+{
+  "extends": "@coordina/tsconfig/next.json",
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "types": ["vitest/globals"],
+    "target": "es2017",
+
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.js",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "vitest.config.mts"
+  ],
+  "exclude": ["node_modules", ".next/**/*", "playwright-report", "test-results"]
+}
