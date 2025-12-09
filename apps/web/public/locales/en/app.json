@@ -1,0 +1,7 @@
+{
+  "home": "Home",
+  "loginTitle": "Welcome",
+  "loginNotConfigured": "Login is currently not configured.",
+  "loginDescription": "Login to your account to continue",
+  "loginError": "Don't have an account? <a>Sign up</a>"
+}

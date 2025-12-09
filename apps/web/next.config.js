@@ -12,7 +12,12 @@ const nextConfig = {
 	output:
 		process.env.NEXT_PUBLIC_SELF_HOSTED === "true" ? "standalone" : undefined,
 	productionBrowserSourceMaps: true,
-	transpilePackages: ["@coordina/tailwind-config"],
+	transpilePackages: [
+		"@coordina/tailwind-config",
+		"@coordina/database",
+		"@coordina/ui",
+		"@coordina/posthog"
+	],
 	assetPrefix: process.env.NEXT_PUBLIC_BASE_URL,
 	webpack(config) {
 		config.module.rules.push({
@@ -37,7 +42,7 @@ const nextConfig = {
 		return [
 			//   {
 			//   source: "/support",
-			//   destination: "https://support.rallly.co",
+			//   destination: "",
 			//   permanent: true,
 			// },
 			{

@@ -2,11 +2,11 @@
   "extends": "@coordina/tsconfig/next.json",
   "compilerOptions": {
     "strictNullChecks": true,
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "@coordina/ui/custom"],
     "target": "es2017",
 
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [

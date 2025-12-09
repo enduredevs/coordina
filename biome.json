@@ -69,7 +69,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["apps/**/src/**", "packages/**/src/**"],
+    "includes": ["apps/**/src/**", "packages/**/src/**", "!**/*.css"],
     "ignoreUnknown": true
   }
 }

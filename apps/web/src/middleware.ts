@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { getLocaleFromRequest, setLocaleCookie } from "@/src/lib/locale/server";
+import { getLocaleFromRequest, setLocaleCookie } from "@/lib/locale/server";
 
 export const middleware = async (req: NextRequest) => {
   const { nextUrl } = req;
@@ -9,6 +9,8 @@ export const middleware = async (req: NextRequest) => {
   const locale = getLocaleFromRequest(req);
 
   newUrl.pathname = `/${locale}${pathname}`;
+
+  console.log("pathname - ", newUrl.pathname);
 
   const res = NextResponse.rewrite(newUrl);
   setLocaleCookie(req, res, locale);

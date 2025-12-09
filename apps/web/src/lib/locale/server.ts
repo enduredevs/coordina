@@ -1,7 +1,7 @@
 import { defaultLocale, supportedLanguages } from "@coordina/languages";
 import { getPreferredLocaleFromHeaders } from "@coordina/languages/get-preferred-locale";
 import type { NextRequest, NextResponse } from "next/server";
-import { LOCAL_COOKIE_NAME } from "@/src/lib/locale/constants";
+import { LOCAL_COOKIE_NAME } from "@/lib/locale/constants";
 
 export function getLocaleFromRequest(req: NextRequest) {
   const localeCookie = req.cookies.get(LOCAL_COOKIE_NAME);
@@ -25,7 +25,7 @@ export function getLocaleFromRequest(req: NextRequest) {
 export function setLocaleCookie(
   req: NextRequest,
   res: NextResponse,
-  locale: string,
+  locale: string
 ) {
   if (req.cookies.get(LOCAL_COOKIE_NAME)) {
     return;
