@@ -1,21 +1,57 @@
-import * as React from "react"
-import { cn } from "@coordina/ui"
+import { cn } from "@coordina/ui";
+import { cva } from "class-variance-authority";
+import * as React from "react";
 
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, ...props }, ref) => {
+export type InputProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "size"
+> & {
+  size?: "sm" | "md" | "lg";
+  error?: boolean;
+};
+
+const inputVariants = cva(
+  cn(
+    "w-full focus:ring-2 focus:ring-ring focus-visible:border-gray-300",
+    "h-9 rounded-md border border-input bg-white file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+  ),
+  {
+    variants: {
+      size: {
+        sm: "h-7 px-1 text-xs",
+        md: "h-8 px-2 text-sm",
+        lg: "h-12 px-3 text-base",
+      },
+      variant: {
+        default: "border-primary-400 focus-visible:border-primary-400",
+        error: "border-rose-400 focus-visible:border-rose-400",
+        ghost: "border-transparent focus-visible:border-primary-400",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  },
+);
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, size, error, type, ...props }, ref) => {
     return (
       <input
         type={type}
         className={cn(
-          "flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-gray-950 placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:border-gray-800 dark:bg-gray-950 dark:ring-offset-gray-950 dark:file:text-gray-50 dark:placeholder:text-gray-400 dark:focus-visible:ring-gray-300",
-          className
+          inputVariants({ size }),
+          error
+            ? "focus-visible:border-rose-400 focus-visible:ring-rose-100"
+            : "focus-visible:border-primary-400 focus-visible:ring-primary-100",
+          className,
         )}
         ref={ref}
         {...props}
       />
-    )
-  }
-)
-Input.displayName = "Input"
+    );
+  },
+);
+Input.displayName = "Input";
 
-export { Input }
+export { Input };

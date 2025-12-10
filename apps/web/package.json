@@ -11,17 +11,23 @@
   "dependencies": {
     "@coordina/languages": "workspace:*",
     "@coordina/posthog": "workspace:*",
+    "@coordina/utils": "workspace:*",
     "@coordina/ui": "workspace:*",
     "@sentry/nextjs": "^10.29.0",
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "better-auth": "^1.4.6",
     "i18next": "^25.7.2",
     "i18next-icu": "^2.4.1",
     "i18next-resources-to-backend": "^1.2.1",
     "next": "16.0.3",
+    "next-auth": "^4.24.13",
     "next-runtime-env": "^3.3.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-hook-form": "^7.68.0",
     "react-i18next": "^16.4.0",
-    "react-use": "^17.6.0"
+    "react-use": "^17.6.0",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
@@ -33,6 +39,7 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
+    "cross-env": "^10.1.0",
     "crossenv": "0.0.2-security",
     "eslint": "^9.39.1",
     "eslint-config-next": "16.0.3",

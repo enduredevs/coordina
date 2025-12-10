@@ -27,6 +27,10 @@ export function AuthPageDescription({
   return <p className="text-muted-foreground">{children}</p>;
 }
 
+export function AuthPageContent({ children }: { children: React.ReactNode }) {
+  return <div className="space-y-4">{children}</div>;
+}
+
 export function AuthPageExternal({ children }: { children: React.ReactNode }) {
   return (
     <p className="px-4 py-3 text-center text-muted-foreground">{children}</p>

@@ -2,9 +2,8 @@
   "extends": "@coordina/tsconfig/next.json",
 
   "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "ignoreDeprecations": "6.0",
+    "baseUrl": "."
   },
 
   "include": ["**/*.ts", "**/*.tsx"],

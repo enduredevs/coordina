@@ -1,0 +1,20 @@
+{
+  "name": "@coordina/utils",
+  "version": "0.0.0",
+  "private": "true",
+  "scripts": {
+    "test:unit": "vitest run",
+    "type-check": "tsc --noEmit"
+  },
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "dependencies": {
+    "nanoid": "^5.1.6"
+  },
+  "devDependencies": {
+    "@coordina/tsconfig": "workspace:*",
+    "@types/node": "^24.10.2",
+    "vitest": "^4.0.15"
+  }
+}
