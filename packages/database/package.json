@@ -5,22 +5,26 @@
   "exports": "./index.ts",
   "scripts": {
     "db:generate": "prisma generate",
-    "db:push": "prisma db push --skip-generate",
-    "db:deploy": "prisma migrate deploy --config ../../prisma.config.ts",
-    "db:migrate": "prisma migrate dev --config ../../prisma.config.ts",
-    "db:m": "dotenv -e ../../.env -- prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:deploy": "prisma migrate deploy",
+    "db:migrate": "prisma migrate dev",
+    "db:reset": "prisma migrate reset",
+    "db:create": "prisma migrate dev --create-only",
+    "db:empty": "prisma migrate dev --schema=prisma/schema.prisma --create-only",
     "db:seed": "tsx prisma/seed.ts",
     "type-check": "tsc --pretty --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^7.0.0",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
     "dayjs": "^1.11.19"
   },
   "devDependencies": {
     "@coordina/tsconfig": "workspace:*",
-    "@faker-js/faker": "^10.1.0",
+    "@faker-js/faker": "^7.6.0",
     "@types/node": "^24.10.1",
-    "prisma": "^7.0.0",
+    "dotenv": "^17.2.3",
+    "prisma": "^7.2.0",
     "tsx": "^4.20.6"
   }
 }

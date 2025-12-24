@@ -1,4 +1,12 @@
 {
+  "wrongVerificationCode": "Your verification code is incorrect or has expired",
+  "verificationCodeHelp": "Didn't get the email? Check your spam/junk.",
+  "verificationCodePlaceholder": "Enter your 6-digit code",
+  "login": "Login",
+  "back": "Back",
+  "loginVerifyDescription": "Check your email for the verification code",
+  "guest": "Guest",
+  "loginVerifyTitle": "Finish Logging In",
   "continue": "Continue",
   "emailPlaceholder": "isla.quinn@example.com",
   "namePlaceholder": "Isla Quinn",
