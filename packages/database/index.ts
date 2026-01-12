@@ -1,4 +1,4 @@
-import { PrismaClient } from "./generated/prisma";
+import { PrismaClient, TimeFormat } from "./generated/prisma";
 import { PrismaPg } from "@prisma/adapter-pg";
 import dotenv from "dotenv";
 import path from "node:path";
@@ -22,5 +22,8 @@ declare const globalThis: {
 
 const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
 export { prisma };
+export type { TimeFormat };
 
 if (process.env.NODE_ENV !== "production") globalThis.prismaGlobal = prisma;
+
+export * from "./generated/prisma";

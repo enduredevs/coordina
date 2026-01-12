@@ -12,21 +12,26 @@ import {
 import { Input } from "@coordina/ui/input";
 import { PasswordInput } from "@coordina/ui/password-input";
 import { absoluteUrl } from "@coordina/utils/absolute-url";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { useRegisterNameFormSchema } from "@/app/[locale]/(auth)/register/components/schema";
 import { Trans } from "@/components/trans";
 import { PasswordStrengthMeter } from "@/features/password/components/password-strength-meter";
 import { useTranslation } from "@/i18n/client";
 import { authClient } from "@/lib/auth-client";
+import { getBrowserTimeZone } from "@/utils/date-time-utils";
 import { validateRedirectUrl } from "@/utils/redirect";
 
 export function RegisterNameForm() {
+  const schema = useRegisterNameFormSchema();
   const form = useForm({
     defaultValues: {
       name: "",
       email: "",
       password: "",
     },
+    resolver: zodResolver(schema),
   });
   const searchParams = useSearchParams();
   const { t, i18n } = useTranslation();
@@ -52,10 +57,60 @@ export function RegisterNameForm() {
               email: data.email,
               password: data.password,
               name: data.name,
-              timeZone: "",
+              timeZone: getBrowserTimeZone(),
               locale: i18n.language,
+              callbackURL: verifyURL,
             });
+
+            console.log("++1");
+
+            if (res.error) {
+              switch (res.error.code) {
+                case "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL": {
+                  form.setError("email", {
+                    message: t("userAlreadyExists", {
+                      defaultValue: "A user with that email already exists.",
+                    }),
+                  });
+                  break;
+                }
+                case "EMAIL_BLOCKED": {
+                  form.setError("email", {
+                    message: t("emailNotAllowed", {
+                      defaultValue: "This email is not allowed.",
+                    }),
+                  });
+                  break;
+                }
+
+                case "TEMPORARY_EMAIL_NOT_ALLOWED": {
+                  form.setError("email", {
+                    message: t("temporaryEmailNotAllowed", {
+                      defaultValue:
+                        "Temporary or disposable email addresses are not allowed.",
+                    }),
+                  });
+                  break;
+                }
+
+                default: {
+                  console.log("Error is inside default");
+                  form.setError("email", {
+                    message: res.error.message,
+                  });
+                  break;
+                }
+              }
+
+              console.log("++ register-form - Good to proceed");
+
+              // if (res.data?.user?.email) {
+              //   console.log('++ register-form - Good to Go');
+
+              // }
+            }
           } catch (error) {
+            console.log("Error - ", error);
             if (error instanceof Error) {
               form.setError("root", {
                 message: error.message,

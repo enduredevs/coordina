@@ -10,6 +10,7 @@ export const env = createEnv({
    * Will throw if you access these variables on the client.
    */
   server: {
+    DATABASE_URL: z.url(),
     SECRET_PASSWORD: z.string().min(32),
     EMAIL_LOGIN_ENABLED: z.enum(["true", "false"]).default("true"),
   },
@@ -23,6 +24,7 @@ export const env = createEnv({
   },
 
   runtimeEnv: {
+    DATABASE_URL: process.env.DATABASE_URL,
     SECRET_PASSWORD: process.env.SECRET_PASSWORD,
     EMAIL_LOGIN_ENABLED: process.env.EMAIL_LOGIN_ENABLED,
     NEXT_PUBLIC_BASE_URL:
