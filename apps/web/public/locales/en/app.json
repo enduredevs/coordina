@@ -29,7 +29,7 @@
   "registerDescription": "Streamline your scheduling process and save time",
   "registerTitle": "Create Your Account",
   "register": "Register",
-  "loginError": "Don't have an account? <a>Sign up</a>",
+  "loginFooter": "Don't have an account? <a>Sign up</a>",
   "loginDescription": "Login to your account to continue",
   "loginNotConfigured": "Login is currently not configured.",
   "loginTitle": "Welcome",

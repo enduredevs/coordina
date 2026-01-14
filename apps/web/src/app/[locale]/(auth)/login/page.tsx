@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import {
   AuthPageContainer,
   AuthPageDescription,
@@ -7,9 +9,13 @@ import {
 } from "@/app/[locale]/(auth)/components/auth-page";
 import { LinkWithRedirectTo } from "@/app/[locale]/(auth)/components/link-with-redirect";
 import { Trans } from "@/components/trans";
+import { getTranslation } from "@/i18n/server";
+import { authLib, getSession } from "@/lib/auth";
+import { isFeatureEnabled } from "@/lib/feature-flags/server";
+import { getRegistrationEnabled } from "@/utils/get-registration-enabled";
 
 async function loadData() {
-  const isRegistrationEnabled = true;
+  const [isRegistrationEnabled] = await Promise.all([getRegistrationEnabled()]);
 
   return {
     isRegistrationEnabled,
@@ -21,9 +27,18 @@ export default async function LoginPage(props: {
     redirectTo?: string;
   }>;
 }) {
+  const searchParams = await props.searchParams;
+  const session = await getSession();
+  if (session?.user && !session.user.isGuest) {
+    return redirect("/");
+  }
+
   const { isRegistrationEnabled } = await loadData();
-  const isEmailLoginEnabled = true;
-  const hasAlternateLoginMethods = true;
+  const isEmailLoginEnabled = await isFeatureEnabled("emailLogin");
+
+  const hasGoogleProvider = !!authLib.options.socialProviders.google;
+  const hasMicrosoftProvider = !!authLib.options.socialProviders.microsoft;
+  const hasAlternateLoginMethods = hasGoogleProvider || hasMicrosoftProvider;
 
   return (
     <AuthPageContainer>
@@ -48,7 +63,7 @@ export default async function LoginPage(props: {
       {isRegistrationEnabled ? (
         <AuthPageExternal>
           <Trans
-            i18nKey="loginError"
+            i18nKey="loginFooter"
             defaults="Don't have an account? <a>Sign up</a>"
             components={{
               a: <LinkWithRedirectTo className="text-link" href="/register" />,
@@ -58,4 +73,15 @@ export default async function LoginPage(props: {
       ) : null}
     </AuthPageContainer>
   );
+}
+
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const params = await props.params;
+  const { t } = await getTranslation(params.locale);
+
+  return {
+    title: t("login"),
+  };
 }

@@ -1,5 +1,6 @@
 import "@/style.css";
 
+import { TooltipProvider } from "@coordina/ui/tooltip";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { PublicEnvScript } from "next-runtime-env";
@@ -11,6 +12,7 @@ import type { UserDTO } from "@/features/user/schema";
 import { I18nProvider } from "@/i18n/client";
 import { getSession } from "@/lib/auth";
 import { TimezoneProvider } from "@/lib/timezone";
+import { TRPCProvider } from "@/trpc/client/provider";
 import { ConnectedDayjsProvider } from "@/utils/dayjs";
 
 const inter = Inter({
@@ -68,8 +70,6 @@ export default async function Root({
   const { locale } = await params;
   const { user } = await loadData();
 
-  console.log("Root -> ", locale, " // user -> ", user);
-
   return (
     <html lang={"en"} className={inter.className}>
       <head>
@@ -77,19 +77,23 @@ export default async function Root({
       </head>
       <body cz-shortcut-listen="true">
         <I18nProvider locale="en">
-          <UserProvider user={user ?? undefined}>
-            <PreferenceProvider
-              initialValue={{
-                timeFormat: user?.timeFormat,
-                timeZone: user?.timeZone,
-                weekStart: user?.weekStart,
-              }}
-            >
-              <TimezoneProvider initialTimezone={user?.timeZone}>
-                <ConnectedDayjsProvider>{children}</ConnectedDayjsProvider>
-              </TimezoneProvider>
-            </PreferenceProvider>
-          </UserProvider>
+          <TRPCProvider>
+            <TooltipProvider>
+              <UserProvider user={user ?? undefined}>
+                <PreferenceProvider
+                  initialValue={{
+                    timeFormat: user?.timeFormat,
+                    timeZone: user?.timeZone,
+                    weekStart: user?.weekStart,
+                  }}
+                >
+                  <TimezoneProvider initialTimezone={user?.timeZone}>
+                    <ConnectedDayjsProvider>{children}</ConnectedDayjsProvider>
+                  </TimezoneProvider>
+                </PreferenceProvider>
+              </UserProvider>
+            </TooltipProvider>
+          </TRPCProvider>
         </I18nProvider>
       </body>
     </html>

@@ -62,8 +62,6 @@ export function RegisterNameForm() {
               callbackURL: verifyURL,
             });
 
-            console.log("++1");
-
             if (res.error) {
               switch (res.error.code) {
                 case "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL": {
@@ -101,8 +99,6 @@ export function RegisterNameForm() {
                   break;
                 }
               }
-
-              console.log("++ register-form - Good to proceed");
 
               // if (res.data?.user?.email) {
               //   console.log('++ register-form - Good to Go');

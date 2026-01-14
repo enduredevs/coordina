@@ -13,6 +13,7 @@ export const env = createEnv({
     DATABASE_URL: z.url(),
     SECRET_PASSWORD: z.string().min(32),
     EMAIL_LOGIN_ENABLED: z.enum(["true", "false"]).default("true"),
+    REGISTRATION_ENABLED: z.enum(["true", "false"]).default("true"),
   },
 
   /**
@@ -27,6 +28,7 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     SECRET_PASSWORD: process.env.SECRET_PASSWORD,
     EMAIL_LOGIN_ENABLED: process.env.EMAIL_LOGIN_ENABLED,
+    REGISTRATION_ENABLED: process.env.REGISTRATION_ENABLED,
     NEXT_PUBLIC_BASE_URL:
       runtimeEnv("NEXT_PUBLIC_BASE_URL") ??
       (vercelUrl ? `https://${vercelUrl}` : undefined),

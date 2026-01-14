@@ -64,6 +64,10 @@ export const authLib = betterAuth({
       },
     }),
   ],
+  socialProviders: {
+    google: undefined,
+    microsoft: undefined,
+  },
   user: {
     additionalFields: {
       timeZone: {

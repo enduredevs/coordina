@@ -10,8 +10,6 @@ import { signOut as nextAuthSignOut } from "next-auth/react";
 import { env } from "@/env";
 import type { Auth } from "@/lib/auth";
 
-console.log("auth-client >> ", env.NEXT_PUBLIC_BASE_URL);
-
 export const authClient = createAuthClient({
   baseURL: `${env.NEXT_PUBLIC_BASE_URL}/api/better-auth`,
   plugins: [
