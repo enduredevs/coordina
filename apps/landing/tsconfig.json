@@ -1,0 +1,19 @@
+{
+  "extends": "@coordina/tsconfig/next.json",
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "types": ["@coordina/ui/custom"],
+    "target": "es2017",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.js",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", ".next/**/*"]
+}

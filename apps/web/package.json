@@ -36,6 +36,8 @@
     "next": "16.0.3",
     "next-auth": "^4.24.13",
     "next-runtime-env": "^3.3.0",
+    "pg": "^8.17.2",
+    "pg-pool": "^3.11.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-hook-form": "^7.69.0",

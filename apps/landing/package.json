@@ -1,0 +1,39 @@
+{
+  "name": "@coordina/landing",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env PORT=3001 TAILWIND_MODE=watch next dev --turbopack",
+    "build": "next build",
+    "analyze": "cross-env ANALYZE=true next build",
+    "start": "next start",
+    "type-check": "tsc --pretty --noEmit",
+    "i18n:scan": "i18next-scanner --config i18next-scanner.config.js"
+  },
+  "dependencies": {
+    "@coordina/database": "workspace:*",
+    "@coordina/languages": "workspace:*",
+    "@coordina/posthog": "workspace:*",
+    "@coordina/ui": "workspace:*",
+    "@coordina/utils": "workspace:*",
+    "@svgr/webpack": "^8.1.0",
+    "dayjs": "1.11.13",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.556.0",
+    "next": "16.0.3",
+    "next-mdx-remote": "^5.0.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@coordina/tailwind-config": "workspace:*",
+    "@coordina/tsconfig": "workspace:*",
+    "@next/bundle-analyzer": "^16.1.1",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
+    "cross-env": "^10.1.0",
+    "i18next-scanner": "^4.6.0",
+    "i18next-scanner-typescript": "^1.2.1"
+  }
+}
